@@ -61,7 +61,13 @@ const products = [
   },
 ];
 
-mongoose.connect(process.env.MONGODB_URI, { family: 4 })
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.DATABASE_URL;
+if (!mongoUri) {
+  console.error('❌ Missing MongoDB connection string. Set MONGODB_URI, MONGO_URI, or DATABASE_URL in your .env file.');
+  process.exit(1);
+}
+
+mongoose.connect(mongoUri, { family: 4 })
   .then(async () => {
     console.log('✅ Connected to MongoDB');
     await Product.deleteMany(); // clear existing products
