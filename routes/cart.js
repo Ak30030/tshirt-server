@@ -1,5 +1,5 @@
 import express from "express";
-import Cart from "../models/Cart.js";
+import Cart from "../models/cart.js";
 import jwt from "jsonwebtoken";
 import { protect } from "../middleware/auth.js";
 

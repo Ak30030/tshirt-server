@@ -1,6 +1,6 @@
 import express from 'express';
 import Order from '../models/Order.js';
-import Cart from '../models/Cart.js';
+import Cart from '../models/cart.js';
 import {protect, adminOnly} from '../middleware/auth.js';
 
 const router = express.Router();
