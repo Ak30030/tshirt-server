@@ -7,8 +7,7 @@ import productRoutes from './routes/products.js';
 import cartRoutes from './routes/cart.js';
 import orderRoutes from './routes/orders.js';
 
-
-dotenv.config();
+dotenv.config({ path: new URL('./.env', import.meta.url) });
 
 const app = express();
 
@@ -31,9 +30,9 @@ app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
 
-const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.DATABASE_URL;
+const mongoUri = process.env.MONGODB_URL || process.env.MONGO_URL || process.env.DATABASE_URL || process.env.MONGODB_URL || process.env.MONGO_URL;
 if (!mongoUri) {
-  console.error('❌ Missing MongoDB connection string. Set MONGODB_URI, MONGO_URI, or DATABASE_URL in Render or your .env file.');
+  console.error('❌ Missing MongoDB connection string. Set MONGODB_URI, MONGO_URI, DATABASE_URL, MONGODB_URL, or MONGO_URL in Render or your .env file.');
   process.exit(1);
 }
 
